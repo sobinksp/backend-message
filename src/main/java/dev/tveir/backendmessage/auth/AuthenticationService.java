@@ -29,6 +29,8 @@ public class AuthenticationService {
         return AuthenticationResponse
                 .builder()
                 .token(jwtToken)
+                .role(String.valueOf(user.getRole()))
+                .username(String.valueOf(user.getUsername()))
                 .build();
     }
 
@@ -44,6 +46,8 @@ public class AuthenticationService {
         return AuthenticationResponse
                 .builder()
                 .token(jwtToken)
+                .role(String.valueOf(user.getRole()))
+                .username(String.valueOf(user.getUsername()))
                 .build();
     }
 }
