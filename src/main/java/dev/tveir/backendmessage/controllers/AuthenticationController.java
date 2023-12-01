@@ -4,6 +4,7 @@ import dev.tveir.backendmessage.auth.AuthenticationRequest;
 import dev.tveir.backendmessage.auth.AuthenticationResponse;
 import dev.tveir.backendmessage.auth.AuthenticationService;
 import dev.tveir.backendmessage.auth.RegisterRequest;
+import dev.tveir.backendmessage.auth.VerificationRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,5 +31,12 @@ public class AuthenticationController {
             @RequestBody AuthenticationRequest request
     ) {
         return ResponseEntity.ok(service.authenticate(request));
+    }
+
+    @PostMapping("/verification")
+    public ResponseEntity<AuthenticationResponse> verification (
+            @RequestBody VerificationRequest request
+    ) {
+        return ResponseEntity.ok(service.verification(request));
     }
 }

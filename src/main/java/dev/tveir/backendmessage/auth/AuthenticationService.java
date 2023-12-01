@@ -56,4 +56,15 @@ public class AuthenticationService {
                 .username(String.valueOf(user.getUsername()))
                 .build();
     }
+
+    public AuthenticationResponse verification(VerificationRequest request) {
+        var user = repository.findByUsername(request.getUsername()).orElseThrow();
+        var jwtToken = jwtService.generateToken(user);
+        return AuthenticationResponse
+                .builder()
+                .token(jwtToken)
+                .role(String.valueOf(user.getRole()))
+                .username(String.valueOf(user.getUsername()))
+                .build();
+    }
 }
