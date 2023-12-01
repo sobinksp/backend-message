@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 @Data
 @Builder
 @AllArgsConstructor
-@RequiredArgsConstructor
+@NoArgsConstructor
 public class VerificationRequest {
     private String username;
 }
