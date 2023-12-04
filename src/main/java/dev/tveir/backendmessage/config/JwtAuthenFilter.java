@@ -1,5 +1,6 @@
 package dev.tveir.backendmessage.config;
 
+import dev.tveir.backendmessage.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

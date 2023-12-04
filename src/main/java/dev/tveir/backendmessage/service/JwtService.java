@@ -1,4 +1,4 @@
-package dev.tveir.backendmessage.config;
+package dev.tveir.backendmessage.service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

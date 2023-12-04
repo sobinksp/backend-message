@@ -2,7 +2,7 @@ package dev.tveir.backendmessage.controller;
 
 import dev.tveir.backendmessage.auth.AuthenticationRequest;
 import dev.tveir.backendmessage.auth.AuthenticationResponse;
-import dev.tveir.backendmessage.auth.AuthenticationService;
+import dev.tveir.backendmessage.service.AuthenticationService;
 import dev.tveir.backendmessage.auth.RegisterRequest;
 import dev.tveir.backendmessage.auth.VerificationRequest;
 import lombok.RequiredArgsConstructor;
