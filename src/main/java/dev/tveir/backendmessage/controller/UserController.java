@@ -1,6 +1,7 @@
 package dev.tveir.backendmessage.controller;
 
 import dev.tveir.backendmessage.model.request.AuthenticationRequest;
+import dev.tveir.backendmessage.model.request.DeleteRequest;
 import dev.tveir.backendmessage.model.request.EditRequest;
 import dev.tveir.backendmessage.model.response.EditResponse;
 import dev.tveir.backendmessage.model.response.UserResponse;
@@ -28,5 +29,13 @@ public class UserController {
             @RequestBody EditRequest request
             ) {
         return ResponseEntity.ok(service.editUser(request));
+    }
+
+    @DeleteMapping("/users")
+    public ResponseEntity<Void> deleteUser(
+            @RequestBody DeleteRequest request
+            ) {
+        service.deleteUser(request);
+        return ResponseEntity.ok().build();
     }
 }

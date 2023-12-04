@@ -1,5 +1,6 @@
 package dev.tveir.backendmessage.service;
 
+import dev.tveir.backendmessage.model.request.DeleteRequest;
 import dev.tveir.backendmessage.model.request.EditRequest;
 import dev.tveir.backendmessage.model.response.EditResponse;
 import dev.tveir.backendmessage.model.response.UserResponse;
@@ -40,4 +41,10 @@ public class UserService {
                 .role(String.valueOf(user.getRole()))
                 .build();
     }
+
+    public void deleteUser(DeleteRequest request) {
+        var user = repository.findByUsername(request.getUsername()).orElseThrow();
+        repository.delete(user);
+    }
+
 }
