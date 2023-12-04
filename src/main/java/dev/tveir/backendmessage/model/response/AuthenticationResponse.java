@@ -1,4 +1,4 @@
-package dev.tveir.backendmessage.auth;
+package dev.tveir.backendmessage.model.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class VerificationRequest {
+public class AuthenticationResponse {
     private String username;
+    private String role;
+    private String token;
 }

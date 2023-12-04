@@ -1,4 +1,4 @@
-package dev.tveir.backendmessage.auth;
+package dev.tveir.backendmessage.model.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthenticationRequest {
+public class RegisterRequest {
     private String username;
     private String password;
 }

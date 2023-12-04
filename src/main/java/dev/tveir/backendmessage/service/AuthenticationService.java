@@ -1,9 +1,9 @@
 package dev.tveir.backendmessage.service;
 
-import dev.tveir.backendmessage.auth.AuthenticationRequest;
-import dev.tveir.backendmessage.auth.AuthenticationResponse;
-import dev.tveir.backendmessage.auth.RegisterRequest;
-import dev.tveir.backendmessage.auth.VerificationRequest;
+import dev.tveir.backendmessage.model.request.AuthenticationRequest;
+import dev.tveir.backendmessage.model.response.AuthenticationResponse;
+import dev.tveir.backendmessage.model.request.RegisterRequest;
+import dev.tveir.backendmessage.model.request.VerificationRequest;
 import dev.tveir.backendmessage.user.Role;
 import dev.tveir.backendmessage.user.User;
 import dev.tveir.backendmessage.user.UserRepository;
