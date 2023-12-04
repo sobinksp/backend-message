@@ -33,7 +33,7 @@ public class UserService {
         var user = repository.findByUsername(request.getUsername()).orElseThrow();
         Role newRole = Role.valueOf(request.getRole());
         user.setRole(newRole);
-
+        repository.save(user);
         return EditResponse.builder()
                 .id(user.getId())
                 .username(user.getUsername())

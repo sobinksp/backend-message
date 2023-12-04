@@ -23,7 +23,7 @@ public class UserController {
         return ResponseEntity.ok(service.getAllUsers());
     }
 
-    @PostMapping("/users")
+    @PutMapping("/users")
     public ResponseEntity<EditResponse> editUser(
             @RequestBody EditRequest request
             ) {
