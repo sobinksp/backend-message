@@ -42,8 +42,8 @@ public class UserService {
                 .build();
     }
 
-    public void deleteUser(DeleteRequest request) {
-        var user = repository.findByUsername(request.getUsername()).orElseThrow();
+    public void deleteUser(Integer id) {
+        var user = repository.findById(id).orElseThrow();
         repository.delete(user);
     }
 
