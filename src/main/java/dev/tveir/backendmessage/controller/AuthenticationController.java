@@ -1,4 +1,4 @@
-package dev.tveir.backendmessage.controllers;
+package dev.tveir.backendmessage.controller;
 
 import dev.tveir.backendmessage.auth.AuthenticationRequest;
 import dev.tveir.backendmessage.auth.AuthenticationResponse;
