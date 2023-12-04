@@ -1,16 +1,11 @@
 package dev.tveir.backendmessage.service;
 
-import dev.tveir.backendmessage.model.response.AuthenticationResponse;
 import dev.tveir.backendmessage.model.response.UserResponse;
-import dev.tveir.backendmessage.user.User;
-import dev.tveir.backendmessage.user.UserInterface;
 import dev.tveir.backendmessage.user.UserRepository;
-import dev.tveir.backendmessage.user.Users;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -18,12 +13,16 @@ import java.util.stream.Collectors;
 public class UserService {
 
     private final UserRepository repository;
-    private final UserInterface repositoryInterface;
-    public List<Users> getAllEntities() {
-        return repositoryInterface.findAllProjectedBy();
-    }
 
-    public List<User> getAllUsers() {
-        return repository.findAll();
+    public List<UserResponse> getAllUsers() {
+        var userList = repository.findAll();
+        return userList.stream()
+                .map(user -> UserResponse.builder()
+                        .id(user.getId())
+                        .username(user.getUsername())
+                        .role(String.valueOf(user.getRole()))
+                        .build())
+                .collect(Collectors.toList()
+        );
     }
 }
