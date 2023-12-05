@@ -13,3 +13,9 @@ spring:
         format_sql: true
       database: postgresql
       database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  data:
+    mongodb:
+      uri: mongodb+srv://admin:gbgaormVprP3y9Ip@springchat.un1vvs6.mongodb.net/?retryWrites=true&w=majority
+      database: Message
+
