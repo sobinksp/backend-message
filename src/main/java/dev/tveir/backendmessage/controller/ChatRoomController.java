@@ -17,7 +17,7 @@ public class ChatRoomController {
 
     @PostMapping
     public ResponseEntity<ChatRoom> createChatRoom(
-            ChatRoom request
+            @RequestBody ChatRoom request
     ) {
         return ResponseEntity.ok(service.createChatRoom(request));
     }
