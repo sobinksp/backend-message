@@ -8,13 +8,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/message")
+@RequestMapping("/api")
 @RequiredArgsConstructor
 public class MessageController {
 
-    private MessageService service;
+    private final MessageService service;
 
-    @PostMapping
+    @PostMapping("/message/add")
     @ResponseStatus(HttpStatus.CREATED)
     public Message addMessage(
             @RequestBody Message request
@@ -22,7 +22,8 @@ public class MessageController {
         return service.addMessage(request);
     }
 
-    @GetMapping("/test")
+
+    @GetMapping("/message/test")
     public ResponseEntity<String> getTest() {
         return ResponseEntity.ok("Return from message endpoint.");
     }
