@@ -15,7 +15,6 @@ public class MessageService {
     private final MessageRepository repository;
 
     public Message addMessage(Message request) {
-        System.out.println("This is a service" + request);
         request.setId(UUID.randomUUID().toString().split("-")[0]);
         return repository.save(request);
     }
