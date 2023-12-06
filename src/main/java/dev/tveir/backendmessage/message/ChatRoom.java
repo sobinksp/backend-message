@@ -16,5 +16,5 @@ public class ChatRoom {
 
     @Id
     private String id;
-    private List<Integer> member;
+    private List<Integer> members;
 }
