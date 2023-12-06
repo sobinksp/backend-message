@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/message")
 @RequiredArgsConstructor
@@ -22,8 +24,8 @@ public class MessageController {
     }
 
     @GetMapping
-    public ResponseEntity<String> getTest() {
-        return ResponseEntity.ok("Return from message endpoint.");
+    public ResponseEntity<List<Message>> getMessage() {
+        return ResponseEntity.ok(service.getAllMessages());
     }
 
 
