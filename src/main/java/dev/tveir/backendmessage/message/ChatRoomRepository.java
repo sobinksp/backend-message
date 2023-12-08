@@ -2,6 +2,8 @@ package dev.tveir.backendmessage.message;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
+import java.util.List;
+
 public interface ChatRoomRepository extends MongoRepository<ChatRoom, String> {
-    ChatRoom findByMembersContaining(Integer userId);
+    List<ChatRoom> findByMembersContaining(Integer userId);
 }

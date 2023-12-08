@@ -24,7 +24,7 @@ public class ChatRoomController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<ChatRoom>  getMemberChatRoomId(
+    public ResponseEntity<List<ChatRoom>>  getMemberChatRoomId(
             @PathVariable Integer id
     ) {
         return ResponseEntity.ok(service.getUserChatRoomId(id));

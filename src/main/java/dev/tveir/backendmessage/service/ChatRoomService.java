@@ -5,6 +5,8 @@ import dev.tveir.backendmessage.message.ChatRoomRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ChatRoomService {
@@ -14,7 +16,7 @@ public class ChatRoomService {
         return repository.save(request);
     }
 
-    public ChatRoom getUserChatRoomId(Integer userId) {
+    public List<ChatRoom> getUserChatRoomId(Integer userId) {
         return repository.findByMembersContaining(userId);
     }
 }
