@@ -3,30 +3,28 @@ package dev.tveir.backendmessage.controller;
 import dev.tveir.backendmessage.message.Message;
 import dev.tveir.backendmessage.service.MessageService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/message")
+@Controller
 @RequiredArgsConstructor
+@MessageMapping("/api")
 public class MessageController {
 
     private final MessageService service;
-
-    @PostMapping
-    public ResponseEntity<Message> addMessage(
-            @RequestBody Message request
-    ) {
-        return ResponseEntity.ok(service.addMessage(request));
+    private final SimpMessagingTemplate messagingTemplate;
+    @MessageMapping("/chat.sendMessage")
+    public ResponseEntity<Void> sendMessage(@Payload Message request) {
+        service.addMessage(request);
+        messagingTemplate.convertAndSend("/topic/" + request.getChatId());
+        return ResponseEntity.ok().build();
     }
-
-    @GetMapping
-    public ResponseEntity<List<Message>> getMessage() {
-        return ResponseEntity.ok(service.getAllMessages());
-    }
-
-
 }
