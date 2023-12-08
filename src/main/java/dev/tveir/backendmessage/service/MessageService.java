@@ -21,4 +21,9 @@ public class MessageService {
     public List<Message> getAllMessages() {
         return repository.findAll();
     }
+
+    public List<Message> getAllMessagesForChat(String chatId) {
+        return repository.findByChatId(chatId);
+    }
+
 }

@@ -1,5 +1,6 @@
 package dev.tveir.backendmessage.controller;
 
+import dev.tveir.backendmessage.message.ChatRoom;
 import dev.tveir.backendmessage.message.Message;
 import dev.tveir.backendmessage.service.MessageService;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,13 @@ public class MessageController {
     @GetMapping
     public ResponseEntity<List<Message>> getMessage() {
         return ResponseEntity.ok(service.getAllMessages());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<List<Message>>  findByChatId(
+            @PathVariable String id
+    ) {
+        return ResponseEntity.ok(service.getAllMessagesForChat(id));
     }
 
 
