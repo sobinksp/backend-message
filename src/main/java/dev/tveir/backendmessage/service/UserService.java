@@ -47,4 +47,12 @@ public class UserService {
         repository.delete(user);
     }
 
+    public UserResponse getUserInfo(Integer id) {
+        var user = repository.findById(id).orElseThrow();
+        return UserResponse.builder()
+                .id(user.getId())
+                .username(user.getUsername())
+                .role(String.valueOf(user.getRole()))
+                .build();
+    }
 }

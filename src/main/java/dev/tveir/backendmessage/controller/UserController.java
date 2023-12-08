@@ -31,6 +31,13 @@ public class UserController {
         return ResponseEntity.ok(service.editUser(request));
     }
 
+    @GetMapping("/users/{id}")
+    public ResponseEntity<UserResponse> getUserInfo(
+            @PathVariable Integer id
+            ) {
+        return ResponseEntity.ok(service.getUserInfo(id));
+    }
+
     @DeleteMapping("/users/{id}")
     public ResponseEntity<Void> deleteUser(
             @PathVariable Integer id
