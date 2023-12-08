@@ -16,15 +16,28 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-@MessageMapping("/api")
+//@MessageMapping("/api")
 public class MessageController {
 
     private final MessageService service;
     private final SimpMessagingTemplate messagingTemplate;
-    @MessageMapping("/chat.sendMessage")
-    public ResponseEntity<Void> sendMessage(@Payload Message request) {
+    /*@MessageMapping("/message") // /app/message
+    @SendTo("/chatroom/public")
+    public Message sendMessage(@Payload Message message) {
+        service.addMessage(message);
+        return message;
+    }*/
+
+    @MessageMapping("/private-message")
+    public Message sendMessage(@Payload Message message) {
+        service.addMessage(message);
+        messagingTemplate.convertAndSendToUser(message.getRecipient(), "private", message); // /user/USERNAME/private
+        return message;
+    }
+
+    /*public ResponseEntity<Void> sendMessage(@Payload Message request) {
         service.addMessage(request);
         messagingTemplate.convertAndSend("/topic/" + request.getChatId());
         return ResponseEntity.ok().build();
-    }
+    }*/
 }
