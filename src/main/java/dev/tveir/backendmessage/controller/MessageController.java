@@ -32,10 +32,9 @@ public class MessageController {
     }*/
 
     @MessageMapping("/private-message")
-    public Message sendMessage(@Payload Message message) {
+    public void sendMessage(@Payload Message message) {
         service.addMessage(message);
         messagingTemplate.convertAndSendToUser(message.getRecipient(), "private", message); // /user/USERNAME/private
-        return message;
     }
 
     @GetMapping
