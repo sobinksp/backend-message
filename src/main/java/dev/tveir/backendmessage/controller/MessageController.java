@@ -32,8 +32,8 @@ public class MessageController {
     }*/
 
     @MessageMapping("/private-message")
-    public void sendMessage(@Payload Message message) {
-        service.addMessage(message);
+    public Message sendMessage(@Payload Message message) {
+        service.saveMessage(message);
         messagingTemplate.convertAndSendToUser(message.getRecipient(), "private", message); // /user/USERNAME/private
     }
 

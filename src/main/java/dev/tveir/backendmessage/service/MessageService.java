@@ -14,8 +14,9 @@ public class MessageService {
 
     private final MessageRepository repository;
 
-    public Message addMessage(Message request) {
-        return repository.save(request);
+    public Message saveMessage(Message message) {
+        repository.save(message);
+        return message;
     }
 
     public List<Message> getAllMessages() {
