@@ -16,6 +16,7 @@ public class MessageService {
     private final MessageRepository repository;
     private final ChatRoomService chatRoomService;
 
+
     public List<Message> getAllMessages() {
         return repository.findAll();
     }
