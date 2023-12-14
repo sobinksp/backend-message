@@ -5,6 +5,8 @@ import dev.tveir.backendmessage.model.request.EditRequest;
 import dev.tveir.backendmessage.model.response.EditResponse;
 import dev.tveir.backendmessage.model.response.UserResponse;
 import dev.tveir.backendmessage.user.Role;
+import dev.tveir.backendmessage.user.Status;
+import dev.tveir.backendmessage.user.User;
 import dev.tveir.backendmessage.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -53,6 +55,26 @@ public class UserService {
                 .id(user.getId())
                 .username(user.getUsername())
                 .role(String.valueOf(user.getRole()))
+                .userImageUrl(user.getUserImageUrl())
                 .build();
     }
+
+    public void connect(User user) {
+        var existingUser = repository.findById(user.getId()).orElse(null);
+        if (existingUser != null) {
+            existingUser.setStatus(Status.ONLINE);
+            repository.save(existingUser);
+        }
+    }
+    public void disconnect(User user) {
+        var storedUser = repository.findById(user.getId()).orElse(null);
+        if (storedUser != null) {
+            storedUser.setStatus(Status.OFFLINE);
+            repository.save(storedUser);
+        }
+    }
+    public List<User> findConnectedUsers() {
+        return repository.findAllByStatus(Status.ONLINE);
+    }
+
 }

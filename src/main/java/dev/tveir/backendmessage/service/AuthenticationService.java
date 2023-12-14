@@ -5,6 +5,7 @@ import dev.tveir.backendmessage.model.response.AuthenticationResponse;
 import dev.tveir.backendmessage.model.request.RegisterRequest;
 import dev.tveir.backendmessage.model.request.VerificationRequest;
 import dev.tveir.backendmessage.user.Role;
+import dev.tveir.backendmessage.user.Status;
 import dev.tveir.backendmessage.user.User;
 import dev.tveir.backendmessage.user.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -28,10 +29,14 @@ public class AuthenticationService {
         if (repository.existsByUsername(request.getUsername())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User already exists");
         }
+        String defaultImageUrl = "https://cdn-icons-png.flaticon.com/512/8824/8824303.png";
+
         var user = User.builder()
                 .username(request.getUsername())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER)
+                .status(Status.OFFLINE)
+                .userImageUrl(defaultImageUrl)
                 .build();
         repository.save(user);
         var jwtToken = jwtService.generateToken(user);
@@ -41,6 +46,7 @@ public class AuthenticationService {
                 .role(String.valueOf(user.getRole()))
                 .username(String.valueOf(user.getUsername()))
                 .id(user.getId())
+                .userImageUrl(user.getUserImageUrl())
                 .build();
     }
 
@@ -59,6 +65,7 @@ public class AuthenticationService {
                 .role(String.valueOf(user.getRole()))
                 .username(String.valueOf(user.getUsername()))
                 .id(user.getId())
+                .userImageUrl(user.getUserImageUrl())
                 .build();
     }
 
@@ -71,6 +78,7 @@ public class AuthenticationService {
                 .role(String.valueOf(user.getRole()))
                 .username(String.valueOf(user.getUsername()))
                 .id(user.getId())
+                .userImageUrl(user.getUserImageUrl())
                 .build();
     }
 }

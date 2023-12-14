@@ -1,14 +1,11 @@
 package dev.tveir.backendmessage.controller;
 
-import dev.tveir.backendmessage.message.ChatRoom;
 import dev.tveir.backendmessage.message.Message;
 import dev.tveir.backendmessage.service.MessageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -33,8 +30,8 @@ public class MessageController {
 
     @MessageMapping("/private-message")
     public void sendMessage(@Payload Message message) {
-        service.addMessage(message);
-        messagingTemplate.convertAndSendToUser(message.getRecipient(), "private", message); // /user/USERNAME/private
+        service.saveMessage(message);
+        messagingTemplate.convertAndSendToUser(message.getRecipientId(), "private", message); // /user/USERNAME/private
     }
 
     @GetMapping
@@ -49,10 +46,33 @@ public class MessageController {
         return ResponseEntity.ok(service.getAllMessagesForChat(id));
     }
 
-
     /*public ResponseEntity<Void> sendMessage(@Payload Message request) {
         service.addMessage(request);
         messagingTemplate.convertAndSend("/topic/" + request.getChatId());
         return ResponseEntity.ok().build();
     }*/
+    @MessageMapping("/chat")
+    public void processMessage(
+            @Payload Message message
+    ) {
+        Message saveMsg = service.saveMessage(message);
+        messagingTemplate.convertAndSendToUser(
+                message.getRecipientId(),
+                "/queue/messages",
+                Message.builder()
+                        .id(saveMsg.getId())
+                        .chatId(saveMsg.getChatId())
+                        .senderId(saveMsg.getSenderId())
+                        .recipientId(saveMsg.getRecipientId())
+                        .content(saveMsg.getContent())
+                        .build()
+        );
+    }
+    @GetMapping("/messages/{senderId}/{recipientId}")
+    public ResponseEntity<List<Message>> findChatMessages(
+            @PathVariable("senderId") String senderId,
+            @PathVariable("recipientId") String recipientId
+    )  {
+        return ResponseEntity.ok(service.findChatMessages(senderId, recipientId));
+    }
 }
