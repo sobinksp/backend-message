@@ -10,4 +10,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     Optional<User> findByUsername(String username);
     Optional<UserResponse> findAllProjectedBy();
     boolean existsByUsername(String username);
+
+    List<User> findAllByStatus(Status status);
 }
