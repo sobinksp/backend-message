@@ -14,7 +14,6 @@ import java.util.UUID;
 public class MessageService {
 
     private final MessageRepository repository;
-    private final ChatRoomService chatRoomService;
 
 
     public List<Message> getAllMessages() {
@@ -27,16 +26,5 @@ public class MessageService {
 
     public Message saveMessage(Message message) {
         return repository.save(message);
-    }
-
-    public List<Message> findChatMessages(
-            String senderId,
-            String recipientId
-    ) {
-        var chatId = chatRoomService.getChatRoomId(
-                senderId,
-                recipientId,
-                false);
-        return chatId.map(repository::findByChatId).orElse(new ArrayList<>());
     }
 }

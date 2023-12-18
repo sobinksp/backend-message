@@ -8,6 +8,5 @@ import java.util.Optional;
 public interface ChatRoomRepository extends MongoRepository<ChatRoom, String> {
     List<ChatRoom> findByMembersContaining(Integer userId);
 
-    Optional<ChatRoom> findBySenderIdAndRecipientId(String senderId, String recipientId);
-
+    boolean existsByMembers(List<Integer> members);
 }
