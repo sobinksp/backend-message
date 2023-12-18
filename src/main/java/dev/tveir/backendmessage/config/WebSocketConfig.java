@@ -20,7 +20,7 @@ import java.util.List;
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
-    public void configureMessageBroker (MessageBrokerRegistry registry) {
+    public void configureMessageBroker(MessageBrokerRegistry registry) {
         registry.enableSimpleBroker("/user"); // Enables a simple in-memory message broker to broadcast messages to clients;
         registry.setApplicationDestinationPrefixes("/app"); // Set the prefix for client-to-server messages
         registry.setUserDestinationPrefix("/user");
