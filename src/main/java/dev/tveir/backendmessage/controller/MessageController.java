@@ -21,12 +21,6 @@ public class MessageController {
 
     private final MessageService service;
     private final SimpMessagingTemplate messagingTemplate;
-    /*@MessageMapping("/message") // /app/message
-    @SendTo("/chatroom/public")
-    public Message sendMessage(@Payload Message message) {
-        service.addMessage(message);
-        return message;
-    }*/
 
     @MessageMapping("/private-message")
     public void sendMessage(@Payload Message message) {
@@ -46,11 +40,6 @@ public class MessageController {
         return ResponseEntity.ok(service.getAllMessagesForChat(id));
     }
 
-    /*public ResponseEntity<Void> sendMessage(@Payload Message request) {
-        service.addMessage(request);
-        messagingTemplate.convertAndSend("/topic/" + request.getChatId());
-        return ResponseEntity.ok().build();
-    }*/
     @MessageMapping("/chat")
     public void processMessage(
             @Payload Message message
@@ -67,12 +56,5 @@ public class MessageController {
                         .content(saveMsg.getContent())
                         .build()
         );
-    }
-    @GetMapping("/messages/{senderId}/{recipientId}")
-    public ResponseEntity<List<Message>> findChatMessages(
-            @PathVariable("senderId") String senderId,
-            @PathVariable("recipientId") String recipientId
-    )  {
-        return ResponseEntity.ok(service.findChatMessages(senderId, recipientId));
     }
 }

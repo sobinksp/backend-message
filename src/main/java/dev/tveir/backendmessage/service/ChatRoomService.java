@@ -15,7 +15,7 @@ public class ChatRoomService {
     private final ChatRoomRepository repository;
 
     public ChatRoom createChatRoom(ChatRoom request) {
-        if (repository.existsByMembers(request.getMembers())) {
+        if (repository.findByMembers(request.getMembers()) != null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Chat room already exists");
         }
         return repository.save(request);
