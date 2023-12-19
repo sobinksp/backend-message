@@ -15,7 +15,6 @@ import java.util.List;
 @Controller
 @RestController
 @RequiredArgsConstructor
-//@MessageMapping("/api")
 @RequestMapping("/api/message")
 public class MessageController {
 
