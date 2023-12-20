@@ -2,9 +2,9 @@ spring:
   profiles:
     active: prod
   datasource:
-    url: jdbc:postgresql://roundhouse.proxy.rlwy.net:35434/railway
-    username: postgres
-    password: 12abdA3GdE-f6Df541g5FEb3f4gGa25D
+    url: jdbc:postgresql://${PROD_DB_HOST}/${PROD_DB_NAME}
+    username: ${PROD_DB_USERNAME}
+    password: ${PROD_DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -16,11 +16,10 @@ spring:
       database: postgresql
       database-platform: org.hibernate.dialect.PostgreSQLDialect
   secret:
-    jwt: J4sDZp3vK3mIyPIBUuM9P1DOPqwE1USDXNQmbkql5cnPtRCPbxKlLsHrg+zC9X+F
+    jwt: ${JWT_SECRET}
   allowed-origin:
-    url: https://tveir-react.onrender.com
+    url: ${ALLOWED_ORIGIN_URL}
   data:
     mongodb:
-      uri: mongodb+srv://admin:gbgaormVprP3y9Ip@springchat.un1vvs6.mongodb.net/?retryWrites=true&w=majority
+      uri: ${MONGODB_URI}
       database: Message
-
