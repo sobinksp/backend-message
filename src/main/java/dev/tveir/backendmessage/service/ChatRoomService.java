@@ -19,6 +19,4 @@ public class ChatRoomService {
     public List<ChatRoom> getUserChatRoomId(Integer userId) {
         return repository.findByMembersContaining(userId);
     }
-
-
 }
