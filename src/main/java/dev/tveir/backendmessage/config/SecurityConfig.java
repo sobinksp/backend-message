@@ -24,7 +24,7 @@ public class SecurityConfig {
 
     private final JwtAuthenFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
-    @Value("${ALLOWED_ORIGIN_URL}")
+    @Value("${spring.allowed-origin}")
     private String allowedOrigin;
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
