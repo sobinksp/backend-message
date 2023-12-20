@@ -18,7 +18,7 @@ import java.util.function.Function;
 
 @Service
 public class JwtService {
-    @Value("${spring.secret.jwt}")
+    @Value("${JWT_SECRET}")
     private String SECRET_KEY;
     public String generateToken(UserDetails userDetails) {
         return generateToken(new HashMap<>(), userDetails);
