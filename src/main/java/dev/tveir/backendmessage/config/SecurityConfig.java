@@ -1,6 +1,7 @@
 package dev.tveir.backendmessage.config;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -23,7 +24,8 @@ public class SecurityConfig {
 
     private final JwtAuthenFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
-
+    @Value("${spring.allowed-origin.url}")
+    private String allowedOrigin;
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -44,7 +46,7 @@ public class SecurityConfig {
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
-        config.addAllowedOrigin("http://localhost:5173"); // Allow all origins
+        config.addAllowedOrigin(allowedOrigin); // Allow all origins
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE")); // Allow all HTTP methods
         config.addAllowedHeader("*"); // Allow all headers
         config.setAllowCredentials(true);

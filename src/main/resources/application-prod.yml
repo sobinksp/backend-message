@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: dev
+    active: prod
   datasource:
     url: jdbc:postgresql://roundhouse.proxy.rlwy.net:35434/railway
     username: postgres
@@ -18,7 +18,7 @@ spring:
   secret:
     jwt: J4sDZp3vK3mIyPIBUuM9P1DOPqwE1USDXNQmbkql5cnPtRCPbxKlLsHrg+zC9X+F
   allowed-origin:
-    url: http://localhost:5173
+    url: https://tveir-react.onrender.com
   data:
     mongodb:
       uri: mongodb+srv://admin:gbgaormVprP3y9Ip@springchat.un1vvs6.mongodb.net/?retryWrites=true&w=majority
