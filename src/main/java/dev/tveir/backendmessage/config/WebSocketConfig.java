@@ -20,7 +20,7 @@ import java.util.List;
 @EnableWebSocketMessageBroker
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
-    @Value("${spring.allowed-origin}")
+    @Value("${spring.allowed-origin.url}")
     private String allowedOrigin;
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
