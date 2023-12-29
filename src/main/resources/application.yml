@@ -1,0 +1,26 @@
+spring:
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:postgresql://roundhouse.proxy.rlwy.net:35434/railway
+    username: postgres
+    password: 12abdA3GdE-f6Df541g5FEb3f4gGa25D
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+      database: postgresql
+      database-platform: org.hibernate.dialect.PostgreSQLDialect
+  secret:
+    jwt: J4sDZp3vK3mIyPIBUuM9P1DOPqwE1USDXNQmbkql5cnPtRCPbxKlLsHrg+zC9X+F
+  allowed-origin:
+    url: https://tveir-react.onrender.com
+  data:
+    mongodb:
+      uri: mongodb+srv://admin:gbgaormVprP3y9Ip@springchat.un1vvs6.mongodb.net/?retryWrites=true&w=majority
+      database: Message
+
